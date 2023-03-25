@@ -18,7 +18,7 @@ Call:
 // package.json
 ...
   "flow-coverage-report": {
-    "threshold": 0,
+    "threshold": 10,
     "outputDir": "coverage",
     "reportTypes": [
       "json"
