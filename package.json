@@ -20,7 +20,8 @@
     "bump-flow-coverage-threshold": "bin/index.js"
   },
   "scripts": {
-    "test": "echo 'No tests yet'"
+    "test": "echo 'No tests yet'",
+    "build": "echo 'Nothing to build'"
   },
   "devDependencies": {},
   "bugs": {
