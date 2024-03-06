@@ -1,5 +1,7 @@
 #! /usr/bin/env node
 
+/* eslint-disable no-console */
+
 const fs = require('fs');
 
 const getPackageJson = () => {
@@ -28,9 +30,17 @@ const updatePackageJsonThershold = ({
 }) => {
   if (packageJson['flow-coverage-report'] && packageJson['flow-coverage-report'].threshold) {
     const updatePackageJson = packageJson;
+
     updatePackageJson['flow-coverage-report'].threshold = percent;
 
-    fs.writeFileSync('./package.json', JSON.stringify(updatePackageJson, null, 2));
+    fs.writeFileSync(
+      './package.json',
+      JSON.stringify(
+        updatePackageJson,
+        null,
+        2,
+      ),
+    );
   } else {
     console.warning('package.json is incompatible');
   }
