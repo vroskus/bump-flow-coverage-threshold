@@ -4,6 +4,9 @@
 
 const fs = require('fs');
 
+const identSize = 2;
+const errorExitCode = 0;
+
 const getPackageJson = () => {
   const file = fs.readFileSync('./package.json');
 
@@ -24,7 +27,7 @@ const getFlowCoverage = () => {
   return null;
 };
 
-const updatePackageJsonThershold = ({
+const updatePackageJsonThreshold = ({
   packageJson,
   percent,
 }) => {
@@ -38,7 +41,7 @@ const updatePackageJsonThershold = ({
       JSON.stringify(
         updatePackageJson,
         null,
-        2,
+        identSize,
       ),
     );
   } else {
@@ -52,7 +55,7 @@ const main = () => {
   if (packageJson === null) {
     console.warning('Unable to get package.json');
 
-    return process.exit(0);
+    return process.exit(errorExitCode);
   }
 
   const flowCoverage = getFlowCoverage();
@@ -60,11 +63,11 @@ const main = () => {
   if (flowCoverage === null) {
     console.warning('Unable to get flow-coverage.json');
 
-    return process.exit(0);
+    return process.exit(errorExitCode);
   }
 
   if (flowCoverage.percent) {
-    updatePackageJsonThershold({
+    updatePackageJsonThreshold({
       packageJson,
       percent: flowCoverage.percent,
     });
@@ -72,7 +75,7 @@ const main = () => {
     console.warning('flow-coverage.json is incompatible');
   }
 
-  return process.exit(0);
+  return process.exit(errorExitCode);
 };
 
 main();
